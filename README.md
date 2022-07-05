@@ -13,5 +13,5 @@ App written with Pygame which provides the abilities to create langton's ants, t
 ## Usage
 Starting via ```main.py```:
 ```bash
-python3 Main.py
+python3 main.py
 ````
