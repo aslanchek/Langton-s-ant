@@ -3,7 +3,7 @@ App written with Pygame which provides the abilities to create langton's ants, t
 ## Description
 ### Game control 
 * use mouse to create langton's ant exact in the click pos
-* ```Q``` - quit
+* ```ESC``` - quit
 * ```W``` - increase fps (to speed up simulation)
 * ```S``` - decrease fps (to slow down simulation)
 
