@@ -23,6 +23,9 @@ class Ant:
 
         self.x += constants.DIRECTIONS[self.direction][0]
         self.y += constants.DIRECTIONS[self.direction][1]
+    def render(self):
+        pygame.draw.rect(self.game.screen, constants.RED, (self.x, self.y, constants.SIZE, constants.SIZE))
+        
 
 
 class Game:
@@ -57,12 +60,18 @@ class Game:
                     print() 
                     print("=============================")
             elif event.type == pygame.locals.MOUSEBUTTONDOWN:
-                self.ants.append(Ant(self.selected_color, event.pos[0], event.pos[1], self.selected_direction, self))
+                x = event.pos[0]
+                y = event.pos[1]
+                x = (x // 4 + int(x % 4 >= 2)) * 4
+                y = (y // 4 + int(y % 4 >= 2)) * 4
+                self.ants.append(Ant(self.selected_color, x, y, self.selected_direction, self))
     
     def render(self):
         self.screen.fill(constants.WHITE)
         for dot in self.filled_dots:
             pygame.draw.rect(self.screen, self.filled_dots[dot], (dot[0], dot[1], constants.SIZE, constants.SIZE))
+        for ant in self.ants:
+            ant.render()
         pygame.display.update()
 
     def stop(self):
