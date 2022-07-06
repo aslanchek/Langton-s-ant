@@ -49,7 +49,7 @@ class Game:
             if event.type == pygame.locals.QUIT:
                     self.stop() 
             elif event.type == pygame.locals.KEYDOWN:
-                if event.key == pygame.locals.K_q:
+                if event.key == pygame.locals.K_ESCAPE:
                     self.stop()
                 if event.key == pygame.locals.K_w:
                     self.fps += 10
@@ -62,8 +62,8 @@ class Game:
             elif event.type == pygame.locals.MOUSEBUTTONDOWN:
                 x = event.pos[0]
                 y = event.pos[1]
-                x = (x // 4 + int(x % 4 >= 2)) * 4
-                y = (y // 4 + int(y % 4 >= 2)) * 4
+                x = (x // constants.SIZE + int(x % constants.SIZE >= constants.SIZE/2)) * constants.SIZE
+                y = (y // constants.SIZE + int(y % constants.SIZE >= constants.SIZE/2)) * constants.SIZE
                 self.ants.append(Ant(self.selected_color, x, y, self.selected_direction, self))
     
     def render(self):
