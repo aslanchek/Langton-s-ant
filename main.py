@@ -6,23 +6,18 @@ class Button():
 
 class Ant:
     def __init__(self, color, start_x, start_y, start_direction, game):
-        self.color = color
+        self.game = game
         self.x = start_x
         self.y = start_y
-        self.game = game
+        self.color = color
         self.direction = start_direction
     
-    def move(self):
-        position = (self.x, self.y)
-        if position in self.game.filled_dots:
-            self.direction = (self.direction + 4 - 1) % 4 # angle: 1 for right, -1 for left
-            del self.game.filled_dots[position] # turn <color> in white
-        else:
-            self.direction = (self.direction + 4 + 1) % 4 
-            self.game.filled_dots[position] = self.color # turns white in <color>
 
+    def move(self):
+        self.game.grid[self.x][self.y] = not self.game.grid[self.x][self.y] 
         self.x += constants.DIRECTIONS[self.direction][0]
         self.y += constants.DIRECTIONS[self.direction][1]
+
     def render(self):
         pygame.draw.rect(self.game.screen, constants.RED, (self.x, self.y, constants.SIZE, constants.SIZE))
         
@@ -30,17 +25,19 @@ class Ant:
 
 class Game:
     def __init__(self, screen):
+        self.screen = screen
+        self.fps = constants.FPS_DEFAULT
         self.running = True
         self.pause = False
         self.myfont = pygame.font.SysFont('Comic Sans MS', 25)
-        self.screen = screen
-        self.fps = constants.FPS_DEFAULT
         self.selected_color = constants.BLACK
         self.mode = 0
-        self.selected_direction = 0
-        self.filled_dots = {}
         self.epoch = 1
+
         self.ants = []
+        self.ants.append(Ant(constants.BLACK, 30, 30, 0, self))
+        self.grid = [[0 for i in range(constants.W)] for i in range(constants.H)]
+
 
     def next_epoch(self):
         for ant in self.ants:
