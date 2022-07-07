@@ -73,7 +73,7 @@ class Game:
                 if event.key == pygame.locals.K_s: # slow down simulation speed
                     self.fps -= 10
                 if event.key == pygame.locals.K_m: # switch mode: drawing or appeding the ants
-                    self.mode = (self.mode + 1) % 2
+                    self.mode = not self.mode
                 if event.key == pygame.locals.K_SPACE: # pause
                     self.pause = not self.pause
                 if event.key == pygame.locals.K_d:
@@ -102,6 +102,8 @@ class Game:
         screen.blit(self.myfont.render('M: switch pen/erase', False, (0, 0, 0)) ,(constants.WIDTH - 230,50))
         screen.blit(self.myfont.render('W/S: speed up/ slow down', False, (0, 0, 0)) ,(constants.WIDTH - 230,70))
         screen.blit(self.myfont.render('SPACE: pause', False, (0, 0, 0)) ,(constants.WIDTH - 230,90))
+        if self.pause:
+            screen.blit(self.myfont.render('PAUSE', False, (0, 0, 0)) ,(constants.WIDTH / 2 , constants.HEIGHT - 20))
         pygame.display.update()
 
     def stop(self):
