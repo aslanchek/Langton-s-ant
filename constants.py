@@ -1,14 +1,8 @@
-SIZE = 10
-W = 100
-H = 80
+SIZE = 3
 
-WIDTH = SIZE * W 
-HEIGHT = SIZE * H 
-
-
-FPS_DEFAULT = 60
+FPS_DEFAULT = 600
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
-DIRECTIONS = [(0, -SIZE), (SIZE, 0), (0, SIZE), (-SIZE, 0)]
-MODE = ['PEN', 'ERASE']
+DIRECTIONS = [(0, -1), (1, 0), (0, 1), (-1, 0)]
+MODE = ['ANT', 'PEN', 'ERASE', 'DRAG']
