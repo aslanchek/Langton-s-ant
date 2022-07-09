@@ -1,5 +1,5 @@
 from enum import Enum, auto
-import chunks as ch
+import field as fd
 
 class Direction(Enum):
     LEFT = 0
@@ -43,7 +43,7 @@ class Ant:
 
 class Game:
     def __init__(self):
-        self.field = ch.Field()
+        self.field = fd.Field()
         self.ants = []
 
 
